@@ -1,0 +1,23 @@
+type StudentDto {
+    firstname: String
+    lastname: String
+    email: String
+    studentId: String!
+    phone: String
+}
+
+type PageStudentDto {
+    number: Int
+    totalPages: Int
+    totalElements: Int
+    content:[StudentDto]
+}
+
+input StudentRequest {
+    firstname: String
+    lastname: String
+    email: String
+    studentId: String!
+    phone: String
+}
+

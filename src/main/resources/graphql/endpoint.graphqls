@@ -1,0 +1,15 @@
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+type Query {
+    getAllStudents(page:Int, size:Int):PageStudentDto
+    getStudentById(id:String):StudentDto
+}
+
+type Mutation {
+    createStudent(student:StudentRequest):StudentDto
+    updateStudent(id:String,student:StudentRequest):StudentDto
+    deleteStudent(id:String):StudentDto
+}
