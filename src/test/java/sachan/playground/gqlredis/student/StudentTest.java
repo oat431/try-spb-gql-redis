@@ -3,6 +3,7 @@ package sachan.playground.gqlredis.student;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import sachan.playground.gqlredis.configs.RedisConfig;
 import sachan.playground.gqlredis.student.entity.Student;
 import sachan.playground.gqlredis.student.repository.StudentRepository;
 
@@ -10,6 +11,9 @@ import sachan.playground.gqlredis.student.repository.StudentRepository;
 public class StudentTest {
     @Autowired
     StudentRepository studentRepository;
+
+    @Autowired
+    RedisConfig redisConfig;
 
     // create fake first name for 20 student
     String[] firstnames = {

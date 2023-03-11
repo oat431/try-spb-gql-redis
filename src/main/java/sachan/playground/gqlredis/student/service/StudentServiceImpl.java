@@ -1,6 +1,8 @@
 package sachan.playground.gqlredis.student.service;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheConfig;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -9,6 +11,7 @@ import sachan.playground.gqlredis.student.entity.Student;
 import sachan.playground.gqlredis.student.entity.StudentRequest;
 
 @Service
+//@CacheConfig(cacheNames = "studentCache")
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
     final StudentDao studentDao;
@@ -29,11 +32,13 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+//    @Cacheable(cacheNames = "StudentPage",key = "#pageRequest.pageNumber", unless = "#result == null")
     public Page<Student> getAllStudents(PageRequest pageRequest) {
         return studentDao.getAllStudents(pageRequest);
     }
 
     @Override
+//    @Cacheable(cacheNames = "StudentId",key = "#id", unless = "#result == null")
     public Student getStudent(String id) {
         return studentDao.getStudentById(id);
     }

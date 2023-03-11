@@ -1,6 +1,7 @@
 package sachan.playground.gqlredis.student.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -15,16 +16,19 @@ import sachan.playground.gqlredis.student.service.StudentService;
 import sachan.playground.gqlredis.utils.GqlRedisMapper;
 
 @Controller
+@Cacheable(cacheNames = "StudentCache")
 @RequiredArgsConstructor
 public class StudentController {
     final StudentService studentService;
 
     @QueryMapping
+    @Cacheable(cacheNames = "StudentId",key = "#id", unless = "#result == null")
     public StudentDto getStudentById(@Argument String id) {
         return GqlRedisMapper.INSTANCE.getStudentDto(studentService.getStudent(id));
     }
 
     @QueryMapping
+    @Cacheable(cacheNames = "StudentPage",key = "#page + #size", unless = "#result == null")
     public PageStudentDto getAllStudents(@Argument Integer page, @Argument Integer size) {
         int p = page == null ? 1 : page;
         int s = size == null ? 10 : size;

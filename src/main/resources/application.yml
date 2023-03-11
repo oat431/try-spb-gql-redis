@@ -10,6 +10,22 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
+  data:
+    redis:
+      host: localhost
+      port: 5039
+      timeout: 10000ms
+  cache:
+    type: redis
+    redis:
+      time-to-live: 30
+      cache-null-values: false
   servlet:
     multipart:
       max-file-size: 80MB
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+      FAIL_ON_EMPTY_BEANS: false
+    deserialization:
+      unwrap-root-value: false

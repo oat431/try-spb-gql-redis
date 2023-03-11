@@ -2,10 +2,12 @@ package sachan.playground.gqlredis.student.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.data.redis.core.RedisHash;
 
 @Data
 @Builder
 @Entity
+//@RedisHash("Student")
 @AllArgsConstructor
 @NoArgsConstructor
 public class Student {
